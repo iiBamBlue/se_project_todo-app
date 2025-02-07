@@ -4,8 +4,6 @@ A simple and user-friendly Todo application that allows users to manage their ta
 
 ## Functionality
 
-The Simple Todo App provides the following functionality:
-
 Add Todo: Users can add new todos by filling out a form with a task name and an optional due date. The form is validated to ensure the task name is provided.
 
 Delete Todo: Users can delete existing todos by clicking the delete button associated with each todo item.
@@ -15,8 +13,6 @@ Form Validation: The app uses a FormValidator class to handle form validation, e
 Unique IDs: Each todo item is assigned a unique ID using the uuid package, ensuring that each task can be uniquely identified.
 
 ## Technology
-
-The project is built using the following technologies and techniques:
 
 JavaScript (ES6+): The app is written in modern JavaScript, leveraging features such as classes and modules.
 
@@ -32,4 +28,4 @@ Here are some screenshots demonstrating the features of the app: WIP
 
 This project is deployed on GitHub Pages:
 
-[Simple Todo App](ADD LINK HERE)
+https://github.com/iiBamBlue/se_project_todo_app.git
