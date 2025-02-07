@@ -22,14 +22,12 @@
               <button
                 aria-label="Close modal"
                 class="popup__close"
-                type="button"
-              ></button>
+                type="button"></button>
               <form
                 class="popup__form"
                 name="add-todo-form"
                 id="add-todo-form"
-                novalidate
-              >
+                novalidate>
                 <fieldset class="popup__fieldset">
                   <label class="popup__label" for="todo-name">
                     What needs to be done?
@@ -41,8 +39,7 @@
                       name="name"
                       placeholder="Write here"
                       required
-                      type="text"
-                    />
+                      type="text" />
                     <span class="popup__error" id="todo-name-error"></span>
                   </label>
                   <label class="popup__label" for="todo-date">
@@ -53,8 +50,7 @@
                       name="date"
                       type="date"
                       min="2023-01-01"
-                      max="3000-12-31"
-                    />
+                      max="3000-12-31" />
                     <span class="popup__error" id="todo-date-error"></span>
                   </label>
                 </fieldset>
@@ -88,8 +84,7 @@
               </template>
             </ul>
           </section>
-          <script src="./pages/index.js" defer></script>
-          <script src="./scripts/validate.js" defer></script>
+          <script type="module" src="./pages/index.js"></script>
         </main>
       </div>
     </div>
