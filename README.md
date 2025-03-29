@@ -28,4 +28,4 @@ Here are some screenshots demonstrating the features of the app: WIP
 
 This project is deployed on GitHub Pages:
 
-https://github.com/iiBamBlue/se_project_todo_app.git
+https://github.com/iiBamBlue/se_project_todo-app.git
