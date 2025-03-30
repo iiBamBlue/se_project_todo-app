@@ -1,9 +1,11 @@
-class Popup {
+export default class Popup {
   constructor(popupSelector) {
     this._popup = document.querySelector(popupSelector);
+
     if (!this._popup) {
       throw new Error(`Popup element not found for selector: ${popupSelector}`);
     }
+
     this._handleEscapeClose = this._handleEscapeClose.bind(this);
   }
 
@@ -17,22 +19,20 @@ class Popup {
     document.removeEventListener("keydown", this._handleEscapeClose);
   }
 
-  _handleEscapeClose(evt) {
-    if (evt.key === "Escape") {
+  _handleEscapeClose(event) {
+    if (event.key === "Escape") {
       this.close();
     }
   }
 
   setEventListeners() {
-    this._popup.addEventListener("mousedown", (evt) => {
+    this._popup.addEventListener("mousedown", (event) => {
       if (
-        evt.target.classList.contains("popup") ||
-        evt.target.classList.contains("popup__close")
+        event.target.classList.contains("popup") ||
+        event.target.classList.contains("popup__close")
       ) {
         this.close();
       }
     });
   }
 }
-
-export default Popup;

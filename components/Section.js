@@ -1,21 +1,21 @@
-class Section {
+export default class Section {
   constructor({ items, renderer, containerSelector }) {
-    this._items = items; // Save the items array
-    this._renderer = renderer; // Save the renderer function
-    this._container = document.querySelector(containerSelector); // Select and save the container element
+    this._items = items; // Array of data to render
+    this._renderer = renderer; // Function to create and add a single item
+    this._container = document.querySelector(containerSelector); // Target container
+
+    if (!this._container) {
+      throw new Error(
+        `Container not found with selector: ${containerSelector}`
+      );
+    }
   }
 
-  // Method to render all items to the DOM
   renderItems() {
-    this._items.forEach((item) => {
-      this._renderer(item); // Call the renderer function for each item
-    });
+    this._items.forEach((item) => this._renderer(item));
   }
 
-  // Method to add a single DOM element to the container
   addItem(element) {
-    this._container.append(element); // Append the element to the container
+    this._container.append(element); // Adds new item to the container
   }
 }
-
-export default Section;
