@@ -2,10 +2,9 @@ class Todo {
   constructor(data, selector, handleChangeCallback, handleDeleteCallback) {
     this._data = data;
     this._selector = selector;
-    this._handleChangeCallback = handleChangeCallback; // Callback for checkbox change
-    this._handleDeleteCallback = handleDeleteCallback; // Callback for deletion
+    this._handleChangeCallback = handleChangeCallback;
+    this._handleDeleteCallback = handleDeleteCallback;
 
-    // Define class fields in the constructor
     const todoTemplate = document.querySelector(this._selector);
     this._todoElement = todoTemplate.content
       .querySelector(".todo")
@@ -25,8 +24,8 @@ class Todo {
     });
 
     this._todoDeleteBtn.addEventListener("click", () => {
+      this._handleDeleteCallback(this._data.id); // Pass the ID of the todo for deletion
       this._todoElement.remove();
-      this._handleDeleteCallback(); // Trigger delete callback
     });
   }
 
