@@ -6,16 +6,42 @@ import TodoCounter from "../components/TodoCounter.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { Todo } from "../components/Todo.js";
 
+// Utility function for creating a Todo element
+function generateTodo(item, handleChange, handleDelete) {
+  return new Todo(item, "#todo-template", handleChange, handleDelete).getView();
+}
+
+// Render function to create and add a Todo element to the section
+const renderTodo = (item) => {
+  const todo = generateTodo(item, updateCounterOnChange, updateCounterOnDelete);
+  section.addItem(todo);
+};
+
 // Initialize TodoCounter
 const todoCounter = new TodoCounter(initialTodos, ".todo-counter");
+
+// Counter update callbacks
+const updateCounterOnChange = () => {
+  const allTodos = document.querySelectorAll(".todo__completed"); // All checkboxes
+  const completedCount = Array.from(allTodos).filter(
+    (checkbox) => checkbox.checked
+  ).length;
+  todoCounter.updateCompleted(completedCount); // Pass the actual number.
+};
+
+const updateCounterOnDelete = () => {
+  const totalCount = document.querySelectorAll(".todo").length; // Total todos in the DOM.
+  const completedCount = document.querySelectorAll(
+    ".todo__completed:checked"
+  ).length; // Checked todos.
+  todoCounter.updateTotal(totalCount); // Pass the actual total count.
+  todoCounter.updateCompleted(completedCount); // Pass the actual completed count.
+};
 
 // Initialize Section
 const section = new Section({
   items: initialTodos,
-  renderer: (item) => {
-    const todoElement = new Todo(item, "#todo-template").getView();
-    section.addItem(todoElement);
-  },
+  renderer: renderTodo,
   containerSelector: ".todos__list",
 });
 section.renderItems();
@@ -29,8 +55,7 @@ const popupWithForm = new PopupWithForm("#add-todo-popup", (formData) => {
     completed: false,
   };
 
-  const todoElement = new Todo(newTodo, "#todo-template").getView();
-  section.addItem(todoElement);
+  renderTodo(newTodo);
   todoCounter.updateTotal(true);
 });
 popupWithForm.setEventListeners();
@@ -45,21 +70,4 @@ formValidator.enableValidation();
 // Open popup on button click
 document.querySelector(".button_action_add").addEventListener("click", () => {
   popupWithForm.open();
-});
-
-// Handle checkbox and delete button interactions
-document.querySelector(".todos__list").addEventListener("change", (event) => {
-  if (event.target.classList.contains("todo__completed")) {
-    todoCounter.updateCompleted(event.target.checked);
-  }
-});
-
-document.querySelector(".todos__list").addEventListener("click", (event) => {
-  if (event.target.classList.contains("todo__delete-btn")) {
-    const todoItem = event.target.closest(".todo");
-    if (todoItem) {
-      todoItem.remove();
-      todoCounter.updateTotal(false);
-    }
-  }
 });

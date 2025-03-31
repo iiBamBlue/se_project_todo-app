@@ -14,15 +14,13 @@ export default class TodoCounter {
     this._updateText();
   }
 
-  updateCompleted(increment) {
-    this._completed += increment ? 1 : -1;
-    this._completed = Math.max(this._completed, 0); // Prevent negative values
+  updateCompleted(completedCount) {
+    this._completed = completedCount; // Use a number to set the completed count.
     this._updateText();
   }
 
-  updateTotal(increment) {
-    this._total += increment ? 1 : -1;
-    this._total = Math.max(this._total, 0); // Prevent negative values
+  updateTotal(totalCount) {
+    this._total = totalCount; // Use a number to set the total count.
     this._updateText();
   }
 

@@ -15,6 +15,11 @@ export default class PopupWithForm extends Popup {
     this._inputList = this._form.querySelectorAll(".popup__input");
   }
 
+  // Special method to get the form element
+  getForm() {
+    return this._form;
+  }
+
   _getInputValues() {
     const inputValues = {};
     this._inputList.forEach((input) => {
@@ -28,8 +33,8 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener("submit", (event) => {
       event.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      this.close();
-      this._form.reset();
+      this.close(); // popup state is reset as needed
+      this._form.reset(); // Reset the form fields after submission
     });
   }
 }
